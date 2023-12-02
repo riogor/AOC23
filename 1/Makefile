@@ -1,5 +1,5 @@
 CXX=g++
-CFLAGS=-Wall -O2 -std=c++20 -DLOCAL
+CFLAGS=-Wall -O2 -std=c++20 -I ../ -DLOCAL
 
 all: format 1 2
 

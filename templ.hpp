@@ -20,19 +20,29 @@ typedef pair<ld, ld> pld;
 typedef vector<int> vi;
 typedef vector<vi> vvi;
 
-template <typename T, typename V> ostream &operator<<(ostream &out, pair<T, V> &p)
+template <typename T, typename V> ostream &operator<<(ostream &out, const pair<T, V> &p)
 {
 	out << "(" << p.ff << ", " << p.ss << ")";
 
 	return out;
 }
 
-template <typename T> ostream &operator<<(ostream &out, vector<T> &v)
+template <typename T> ostream &operator<<(ostream &out, const vector<T> &v)
 {
 	out << "[";
-	for (T &e : v)
+	for (const T &e : v)
 		out << e << ", ";
 	out << "]";
+
+	return out;
+}
+
+template <typename T, typename V, typename C> ostream &operator<<(ostream &out, const map<T, V, C> m)
+{
+	out << "<";
+	for (const auto &e : m)
+		out << e << ", ";
+	out << ">";
 
 	return out;
 }

@@ -9,7 +9,7 @@ all: format 1 2
 2: 2.cpp
 	$(CXX) $(CFLAGS) -o $@ $^
 
-format :
+format:
 	clang-format -i *.cpp
 
 clean:

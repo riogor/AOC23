@@ -57,8 +57,8 @@ void solve()
 							if (isIn(field, i + di, j - s + dj - 1) && field[i + di][j - s + dj - 1] == '*' &&
 							    used.find({i + di, j - s + dj - 1}) == used.end())
 							{
-								gears[{i + di, j - s + dj - 1}].ff *= num;
-								gears[{i + di, j - s + dj - 1}].ss++;
+								gears[{i + di, j - s + dj - 1}].fi *= num;
+								gears[{i + di, j - s + dj - 1}].se++;
 								used.insert({i + di, j - s + dj - 1});
 							}
 						}
@@ -82,8 +82,8 @@ void solve()
 					if (isIn(field, i + di, m - 1 - s + dj) && field[i + di][m - 1 - s + dj] == '*' &&
 					    used.find({i + di, m - 1 - s + dj}) == used.end())
 					{
-						gears[{i + di, m - 1 - s + dj}].ff *= num;
-						gears[{i + di, m - 1 - s + dj}].ss++;
+						gears[{i + di, m - 1 - s + dj}].fi *= num;
+						gears[{i + di, m - 1 - s + dj}].se++;
 						used.insert({i + di, m - 1 - s + dj});
 					}
 				}
@@ -93,8 +93,8 @@ void solve()
 
 	ll sum = 0;
 	for (auto &[coord, val] : gears)
-		if (val.ss == 2)
-			sum += val.ff;
+		if (val.se == 2)
+			sum += val.fi;
 
 	cout << sum;
 }

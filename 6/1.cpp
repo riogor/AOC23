@@ -1,5 +1,20 @@
 #include "templ.hpp"
 
+ll getLen(const ll time, const ll dist)
+{
+	ld d = sqrtl(time * time - 4ll * dist);
+
+	ll x1 = (time - d) / 2.0l;
+	while (x1 * (time - x1) < dist)
+		x1++;
+
+	ll x2 = (time + d) / 2.0l;
+	while (x2 * (time - x2) < dist)
+		x2--;
+
+	return x2 - x1 + 1;
+}
+
 void solve()
 {
 	vector<ll> time, dist;
@@ -30,12 +45,7 @@ void solve()
 
 	ll res = 1;
 	for (int i = 0; i < time.size(); i++)
-	{
-		ll cur = 0;
-		for (ll t = 0; t <= time[i]; t++)
-			cur += (t * (time[i] - t) > dist[i]);
-		res *= cur;
-	}
+		res *= getLen(time[i], dist[i]);
 
 	cout << res;
 }

@@ -41,53 +41,55 @@ struct conv
 void solve()
 {
 	vector<pair<ll, ll>> seeds;
-
-	string s;
-	getline(cin, s);
-
-	s = s.substr(s.find(':') + 2);
-
-	size_t ptr = 0;
-	while (ptr < s.size())
-	{
-		size_t nxt = s.find(' ', ptr + 1);
-		ll a = stoll(s.substr(ptr, nxt - ptr));
-		ptr = nxt;
-
-		nxt = s.find(' ', ptr + 1);
-		ll b = stoll(s.substr(ptr, nxt - ptr));
-		ptr = nxt;
-
-		seeds.pb({a, b});
-	}
-
 	vector<vector<conv>> maps;
-	maps.resize(7);
-	int map_cnt = 0;
 
-	getline(cin, s);
-	while (getline(cin, s))
 	{
-		if (s.find(':') != string::npos)
+		string s;
+		getline(cin, s);
+
+		s = s.substr(s.find(':') + 2);
+
+		size_t ptr = 0;
+		while (ptr < s.size())
 		{
-			getline(cin, s);
+			size_t nxt = s.find(' ', ptr + 1);
+			ll a = stoll(s.substr(ptr, nxt - ptr));
+			ptr = nxt;
 
-			do
-			{
-				size_t pos = s.find(' ');
-				ll end = stoll(s.substr(0, pos));
-				ll st = stoll(s.substr(pos + 1, s.find(' ', pos + 1) - pos - 1));
-				ll len = stoll(s.substr(s.find(' ', pos + 1)));
+			nxt = s.find(' ', ptr + 1);
+			ll b = stoll(s.substr(ptr, nxt - ptr));
+			ptr = nxt;
 
-				maps[map_cnt].pb(conv(st, end, len));
-
-				if (!getline(cin, s))
-					break;
-			} while (s != "");
+			seeds.pb({a, b});
 		}
 
-		sort(maps[map_cnt].begin(), maps[map_cnt].end());
-		map_cnt++;
+		maps.resize(7);
+		int map_cnt = 0;
+
+		getline(cin, s);
+		while (getline(cin, s))
+		{
+			if (s.find(':') != string::npos)
+			{
+				getline(cin, s);
+
+				do
+				{
+					size_t pos = s.find(' ');
+					ll end = stoll(s.substr(0, pos));
+					ll st = stoll(s.substr(pos + 1, s.find(' ', pos + 1) - pos - 1));
+					ll len = stoll(s.substr(s.find(' ', pos + 1)));
+
+					maps[map_cnt].pb(conv(st, end, len));
+
+					if (!getline(cin, s))
+						break;
+				} while (s != "");
+			}
+
+			sort(maps[map_cnt].begin(), maps[map_cnt].end());
+			map_cnt++;
+		}
 	}
 
 	ll min_pos = LLONG_MAX;
